@@ -19,7 +19,7 @@ typedef enum bool
 #define RESET(__MEMORY__) {free(__MEMORY__); \
 							__MEMORY__ = NULL; }
 
-#define NEWLINE printf("\n")
+#define NEWLINE write(STDOUT_FILENO, "\n", 1)
 
 
 pid_t createProcess(void);

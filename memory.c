@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "shell.h"
 
@@ -15,7 +16,7 @@ ssize_t input_shell(char **string)
 	ssize_t n = 0;
 
 
-	printf("#cisfun$ ");
+	write(STDOUT_FILENO, "#cisfun$ ", 9);
 	n = getline(string, &nbRd, stdin);
 
 	if (n == -1)
