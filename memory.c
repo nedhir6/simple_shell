@@ -9,7 +9,7 @@
  * @string: the command line
  * Return: number of charater read or exit with 1 status
  */
-size_t input_shell(char **string)
+ssize_t input_shell(char **string)
 {
 	size_t nbRd = 0;
 	ssize_t n = 0;
@@ -19,11 +19,15 @@ size_t input_shell(char **string)
 	n = getline(string, &nbRd, stdin);
 
 	if (n == -1)
-		exitWithError("getline ", 1);
+	{
+		NEWLINE;
+		free(*string);
+		exit(EXIT_SUCCESS);
+	}
 	/*ELIMINATE_NEWLINE(*string, n);*/
 	eliminate_NewLine(*string, n);
 
-	return (nbRd);
+	return (n);
 }
 
 /**

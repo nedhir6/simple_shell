@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "shell.h"
 
@@ -10,10 +11,11 @@
 int main(void)
 {
 	char *commandLine = NULL;
-	/*size_t n = 0;*/
+	/*int n = 0;*/
 	bool running = TRUE;
 
 	pid_t pid;
+
 
 	while (running)
 	{

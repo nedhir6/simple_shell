@@ -47,7 +47,7 @@ void childProcess(char *commandLine)
 
 	if (execve(arg[0], arg, NULL) == -1)
 	{
-		free(commandLine);
+		RESET(commandLine);
 		exitWithError("execve ", 126);
 	}
 }
