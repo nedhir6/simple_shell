@@ -16,6 +16,9 @@ typedef enum bool
 
 /*---------------------STRUCT--&--ENUM---------------------*/
 
+#define RESET(__MEMORY__) {free(__MEMORY__); \
+							__MEMORY__ = NULL; }
+
 
 
 pid_t createProcess(void);
@@ -23,5 +26,8 @@ void fatherProcess(void);
 void childProcess(char *commandLine);
 
 void exitWithError(const char *log, int status);
+
+size_t input_shell(char **string);
+void eliminate_NewLine(char *string, int n);
 
 #endif
