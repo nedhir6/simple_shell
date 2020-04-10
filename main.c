@@ -10,8 +10,9 @@
  */
 int main(void)
 {
+	char **arg;
 	char *commandLine = NULL;
-	/*int n = 0;*/
+	int size = 0;
 	bool running = TRUE;
 
 	pid_t pid;
@@ -20,6 +21,10 @@ int main(void)
 	while (running)
 	{
 		input_shell(&commandLine);
+		arg = strToArray(commandLine);
+		size = get_NumberOfWords(commandLine);
+		RESET(commandLine);
+
 		pid = createProcess();
 
 		switch (pid)
@@ -27,7 +32,7 @@ int main(void)
 			case 0:
 
 				/*printf("child: %p\n", commandLine);*/
-				childProcess(commandLine);
+				childProcess(arg, size);
 				break;
 
 			default:
@@ -35,7 +40,8 @@ int main(void)
 				fatherProcess();
 				break;
 		}
-		RESET(commandLine);
+		/*RESET(commandLine);*/
+		free_ArrayOfWords(arg, size);
 	}
 
 	return (EXIT_SUCCESS);

@@ -38,16 +38,14 @@ void fatherProcess(void)
 /**
  * childProcess - instructions executed by the child
  * @commandLine: input
+ * @size: size of the array
  */
-void childProcess(char *commandLine)
+void childProcess(char **commandLine, int size)
 {
-	char *arg[2] = {NULL, NULL};
 
-	arg[0] = commandLine;
-
-	if (execve(arg[0], arg, NULL) == -1)
+	if (execve(commandLine[0], commandLine, NULL) == -1)
 	{
-		RESET(commandLine);
+		free_ArrayOfWords(commandLine, size);
 		exitWithError("execve ", 126);
 	}
 }

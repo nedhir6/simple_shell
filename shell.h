@@ -24,11 +24,15 @@ typedef enum bool
 
 pid_t createProcess(void);
 void fatherProcess(void);
-void childProcess(char *commandLine);
+void childProcess(char **commandLine, int size);
 
 void exitWithError(const char *log, int status);
 
 ssize_t input_shell(char **string);
 void eliminate_NewLine(char *string, int n);
+int get_NumberOfWords(char *str);
+char *_memcpy(char *dest, char *src, unsigned int n);
+char **strToArray(char *str);
+void free_ArrayOfWords(char *arrayOfWords[], int size);
 
 #endif
