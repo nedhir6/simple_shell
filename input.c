@@ -12,13 +12,13 @@
  */
 ssize_t input_shell(char **string)
 {
-	/*size_t nbRd = 0;*/
+	size_t nbRd = 0;
 	ssize_t n = 0;
 
 
 	write(STDOUT_FILENO, "$ ", 2);
-	/*n = getline(string, &nbRd, stdin);*/
-	n = _getline(string);
+	n = getline(string, &nbRd, stdin);
+	/*n = _getline(string);*/
 	if (n == -1)
 	{
 		NEWLINE;
