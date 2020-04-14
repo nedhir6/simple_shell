@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <signal.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -42,7 +43,11 @@ void fatherProcess(void)
  */
 void childProcess(char **commandLine, int size)
 {
-
+	if (commandLine[0][0] == '\n')
+	{
+		free_ArrayOfWords(commandLine, size);
+		exit(0);
+	}
 	if (execve(commandLine[0], commandLine, NULL) == -1)
 	{
 		free_ArrayOfWords(commandLine, size);
@@ -59,4 +64,15 @@ void exitWithError(const char *log, int status)
 {
 	perror(log);
 	exit(status);
+}
+
+/**
+ * set_signal - handle signal
+ * @sig: signal
+ */
+void set_signal(int sig __attribute__((__unused__)))
+{
+	write(STDOUT_FILENO, "\n#cisfun$ ", 10);
+	if (fflush(stdin) == EOF)
+		exitWithError("fflush ", 1);
 }

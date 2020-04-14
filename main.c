@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <signal.h>
 
 #include "shell.h"
 
@@ -20,6 +21,8 @@ int main(void)
 
 	while (running)
 	{
+		if (signal(SIGINT, set_signal) == SIG_ERR)
+			exitWithError("signal ", 1);
 		input_shell(&commandLine);
 		arg = strToArray(commandLine);
 		size = get_NumberOfWords(commandLine);

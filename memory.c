@@ -101,7 +101,7 @@ char **strToArray(char *str)
 				free(arrayOfWords[j]);
 			free(arrayOfWords);
 
-			return (NULL);
+			exitWithError("Malloc failure ! ", 1);
 		}
 		arrayOfWords[arrayIndex] = _memcpy(arrayOfWords[arrayIndex],
 &str[i - sizeStr], sizeStr);
