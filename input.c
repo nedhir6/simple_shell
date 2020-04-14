@@ -16,7 +16,7 @@ ssize_t input_shell(char **string)
 	ssize_t n = 0;
 
 
-	write(STDOUT_FILENO, "#cisfun$ ", 9);
+	write(STDOUT_FILENO, "$ ", 2);
 	/*n = getline(string, &nbRd, stdin);*/
 	n = _getline(string);
 	if (n == -1)

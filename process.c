@@ -72,7 +72,7 @@ void exitWithError(const char *log, int status)
  */
 void set_signal(int sig __attribute__((__unused__)))
 {
-	write(STDOUT_FILENO, "\n#cisfun$ ", 10);
+	write(STDOUT_FILENO, "\n$ ", 3);
 	if (fflush(stdin) == EOF)
 		exitWithError("fflush ", 1);
 }
