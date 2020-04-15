@@ -43,6 +43,9 @@ void fatherProcess(void)
  */
 void childProcess(char **commandLine, int size)
 {
+	char log[100];
+
+	_strcpy(log, commandLine[0]);
 	if (commandLine[0][0] == '\n')
 	{
 		free_ArrayOfWords(commandLine, size);
@@ -51,7 +54,7 @@ void childProcess(char **commandLine, int size)
 	if (execve(commandLine[0], commandLine, NULL) == -1)
 	{
 		free_ArrayOfWords(commandLine, size);
-		exitWithError("execve ", 126);
+		exitWithError(log, 126);
 	}
 }
 
@@ -72,7 +75,9 @@ void exitWithError(const char *log, int status)
  */
 void set_signal(int sig __attribute__((__unused__)))
 {
-	write(STDOUT_FILENO, "\n$ ", 3);
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, "\n$ ", 3);
+
 	if (fflush(stdin) == EOF)
 		exitWithError("fflush ", 1);
 }

@@ -54,4 +54,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void set_memory(char *array, char *src, unsigned int new_size,
 unsigned int old_size);
 
+char *_strcpy(char *dest, char *src);
+
 #endif
