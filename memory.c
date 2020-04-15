@@ -31,7 +31,7 @@ int get_NumberOfWords(char *str)
 			i++;
 
 		if (!str[i])
-			return (0);
+			return (sizeArray);
 
 		sizeArray++;
 		while (str[i] != ' ' && str[i])

@@ -54,7 +54,7 @@ void childProcess(char **commandLine, int size)
 	if (execve(commandLine[0], commandLine, NULL) == -1)
 	{
 		free_ArrayOfWords(commandLine, size);
-		exitWithError(log, 126);
+		exitWithError(log, EXIT_FAILURE);
 	}
 }
 

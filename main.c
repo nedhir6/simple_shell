@@ -15,9 +15,8 @@ int main(void)
 	char *commandLine = NULL;
 	int size = 0;
 	bool running = TRUE;
-
+	int status = -1;
 	pid_t pid;
-
 
 	while (running)
 	{
@@ -28,22 +27,28 @@ int main(void)
 		size = get_NumberOfWords(commandLine);
 		RESET(commandLine);
 
-		pid = createProcess();
+		status = builtin(arg);
+		if (status != -1)
+			running = FALSE;
 
-		switch (pid)
+		else
 		{
-			case 0:
+		pid = createProcess();
+			switch (pid)
+			{
+				case 0:
 
-				childProcess(arg, size);
-				break;
+					childProcess(arg, size);
+					break;
 
-			default:
+				default:
 
-				fatherProcess();
-				break;
+					fatherProcess();
+					break;
+			}
 		}
 		free_ArrayOfWords(arg, size);
 	}
 
-	return (EXIT_SUCCESS);
+	return (status);
 }

@@ -22,7 +22,7 @@ typedef enum bool
 typedef struct builtin_t
 {
 	char *command;
-	void (*function)(char **commandArg);
+	int (*function)(char *commandArg);
 } builtin_t;
 
 /*---------------------STRUCT--&--ENUM---------------------*/
@@ -55,5 +55,9 @@ void set_memory(char *array, char *src, unsigned int new_size,
 unsigned int old_size);
 
 char *_strcpy(char *dest, char *src);
-
+int builtin(char **commandLine);
+int exit_builtin(char *commandArg);
+int _atoi(char *s);
+int _strcmp(char *s1, char *s2);
 #endif
+
