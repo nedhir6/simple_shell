@@ -34,16 +34,14 @@ int main(void)
 		{
 			case 0:
 
-				/*printf("child: %p\n", commandLine);*/
 				childProcess(arg, size);
 				break;
 
 			default:
-				/*printf("father: %p\n", commandLine);*/
+
 				fatherProcess();
 				break;
 		}
-		/*RESET(commandLine);*/
 		free_ArrayOfWords(arg, size);
 	}
 
