@@ -34,6 +34,8 @@ typedef struct builtin_t
 
 #define BUFFER_SIZE 1024
 
+extern char **environ;
+
 
 pid_t createProcess(void);
 void fatherProcess(void);
@@ -57,7 +59,9 @@ unsigned int old_size);
 char *_strcpy(char *dest, char *src);
 int builtin(char **commandLine);
 int exit_builtin(char *commandArg);
+int env_builtin(char *commandArg __attribute__((__unused__)));
 int _atoi(char *s);
 int _strcmp(char *s1, char *s2);
+void _puts(char *str);
 #endif
 

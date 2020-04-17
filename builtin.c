@@ -13,6 +13,7 @@ int builtin(char **commandLine)
 {
 	builtin_t built[] = {
 		{"exit", exit_builtin},
+		{"env", env_builtin},
 		{NULL, NULL}
 	};
 	int status = -1, i = 0;
@@ -48,6 +49,16 @@ int exit_builtin(char *commandArg)
 	if (status < 0)
 		status = 2;
 	return (status);
+}
+
+int env_builtin(char *commandArg __attribute__((__unused__)))
+{
+	int i = 0;
+
+	for (i = 0 ; environ[i] ; i++)
+		_puts(environ[i]);
+
+	return (-2);
 }
 
 /**
@@ -105,4 +116,3 @@ int _strcmp(char *s1, char *s2)
 
 	return (cmp);
 }
-

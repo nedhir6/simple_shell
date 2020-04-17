@@ -107,3 +107,18 @@ ssize_t _getline(char **buffer)
 	return (n);
 }
 
+/**
+ * _puts - put string to stdout buffer
+ * @str: string to put
+ */
+void _puts(char *str)
+{
+	int i = 0;
+
+	while (str[i] != '\0')
+	{
+		write(STDOUT_FILENO, &str[i], 1);
+		i++;
+	}
+	write(STDOUT_FILENO, "\n", 1);
+}

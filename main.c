@@ -28,10 +28,10 @@ int main(void)
 		RESET(commandLine);
 
 		status = builtin(arg);
-		if (status != -1)
+		if (status >= 0)
 			running = FALSE;
 
-		else
+		else if (status == -1)
 		{
 		pid = createProcess();
 			switch (pid)
