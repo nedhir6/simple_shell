@@ -50,7 +50,11 @@ int exit_builtin(char *commandArg)
 		status = 2;
 	return (status);
 }
-
+/**
+ * env_builtin - display all environment variables
+ * @commandArg: unused
+ * Return: -2
+ */
 int env_builtin(char *commandArg __attribute__((__unused__)))
 {
 	int i = 0;
